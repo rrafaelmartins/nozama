@@ -12,13 +12,13 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany //anotacao para indicar uma relação um para muitos
+    @OneToMany //AnotaÇÃO para indicar uma relação um para muitos
     private List<Produto> produtos;
 
-    //@Transient -> ignoraria esse campo em operaçõs no banco dados, tornando-o um campo não persistido
-    //acho que não se aplica nesse caso
+    //@Transient -> Ignoraria esse campo em operações no banco dados, tornando-o um campo não persistido
+    //Acho que não se aplica nesse caso
     private EstadoPedido estado;
 
-    //getters e setters são gerados automaticamente pelo Lombok
+    //Getters e Setters são gerados automaticamente pelo Lombok
 }
 

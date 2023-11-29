@@ -23,7 +23,6 @@ public class PedidoService {
     }
 
     public Pedido salvar(Pedido pedido) {
-        // Aqui, você pode adicionar lógica para manipulação do estado
         return pedidoRepository.save(pedido);
     }
 
