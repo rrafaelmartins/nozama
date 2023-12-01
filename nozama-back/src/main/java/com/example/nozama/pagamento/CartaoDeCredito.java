@@ -13,4 +13,10 @@ public class CartaoDeCredito {
         this.cvv = cvv;
     }
 
+    public boolean verificaLimite(double valor){
+        if (valor <= this.limite){
+            return true;
+        }
+        return false;
+    }
 }
