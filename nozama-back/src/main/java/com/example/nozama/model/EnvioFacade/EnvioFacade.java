@@ -15,9 +15,11 @@ public class EnvioFacade {
      referente ao envio de uma compra, removendo essa responsabilidade da classe Envio.  
     */
 
+    static MockUpAPIEnvio apiEnvio = MockUpAPIEnvio.getInstance();
+
     public static Envio enviarPedido(){
 
-        Map <String, String> mapEnvio = MockUpAPIEnvio.enviarPedido();
+        Map <String, String> mapEnvio = apiEnvio.enviarPedido();
 
         Envio envio = new Envio(mapEnvio.get("codigo"), mapEnvio.get("status"));
 
@@ -26,7 +28,7 @@ public class EnvioFacade {
 
     public static Rastreio rastrearPedido(String codigo) throws ParseException{
 
-        Map <String, String> mapRastreio = MockUpAPIEnvio.rastrearPedido(codigo);
+        Map <String, String> mapRastreio = apiEnvio.rastrearPedido(codigo);
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date dataEntrega = formato.parse(mapRastreio.get("previsaoEntrega"));
@@ -39,7 +41,7 @@ public class EnvioFacade {
 
     public static String statusPedido(String codigo) throws ParseException{
 
-        return MockUpAPIEnvio.statusPedido(codigo);
+        return apiEnvio.statusPedido(codigo);
     }
 
 }
