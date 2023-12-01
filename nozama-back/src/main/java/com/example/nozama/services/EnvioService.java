@@ -1,9 +1,10 @@
 package com.example.nozama.services;
 
-import com.example.nozama.model.EnvioFacade.EnvioFacade;
-import com.example.nozama.model.EnvioFacade.Rastreio;
 import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.envio.EnvioRepository;
+import com.example.nozama.model.envioFacade.EnvioFacade;
+import com.example.nozama.model.envioFacade.Rastreio;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

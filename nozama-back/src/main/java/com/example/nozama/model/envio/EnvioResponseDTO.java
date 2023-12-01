@@ -1,6 +1,11 @@
 package com.example.nozama.model.envio;
-public record EnvioResponseDTO(Long id,String codigo,  String status) {
-    public EnvioResponseDTO(Envio envio) {
-        this(envio.getId(), envio.getCodigo(), envio.getStatus());
+
+import java.util.Date;
+
+import com.example.nozama.model.envioFacade.Rastreio;
+
+public record EnvioResponseDTO(String status, String local,  Date previsaoEntrega ) {
+    public EnvioResponseDTO(Rastreio rastreio) {
+        this(rastreio.getStatus(), rastreio.getStatus(), rastreio.getPrevisaoEntrega());
     }
 }

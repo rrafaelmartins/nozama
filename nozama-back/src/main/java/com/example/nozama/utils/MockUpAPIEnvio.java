@@ -12,7 +12,7 @@ public class MockUpAPIEnvio {
     public static Map <String, String> enviarPedido(){
         Map <String, String> pedido = new HashMap<>();
 
-        pedido.put("status", "testEnviado");
+        pedido.put("codigo", "testEnviado");
         pedido.put("localAtual", "transportadora");
         pedido.put("previsaoEntrega", "31/02/2024");
         pedido.put("status", ENVIADO);
