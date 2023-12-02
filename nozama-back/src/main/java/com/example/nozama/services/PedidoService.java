@@ -26,7 +26,7 @@ public class PedidoService {
     }
 
     @Transactional
-    public Pedido salvarPedido(Pedido pedido) {
+    public Pedido salvar(Pedido pedido) {
             return pedidoRepository.save(pedido);
     }
 

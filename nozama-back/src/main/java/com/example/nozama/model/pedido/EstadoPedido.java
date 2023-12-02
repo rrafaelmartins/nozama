@@ -25,4 +25,4 @@ public abstract class EstadoPedido {
 
     public abstract void proximoEstado();
     public abstract void estadoAnterior();
-}
+    }
