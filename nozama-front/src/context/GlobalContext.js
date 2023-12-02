@@ -5,8 +5,9 @@ const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
   const {
-    getProducts,
+
     createProduct,
+    isLoaded,
     products
   } = useProducts()
 
@@ -14,8 +15,8 @@ function GlobalProvider({ children }) {
     <GlobalContext.Provider
       value={
         {
-          getProducts,
           createProduct,
+          isLoaded,
           products
         }
       }>

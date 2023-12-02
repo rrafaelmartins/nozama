@@ -4,7 +4,7 @@ import { Container, Text } from './styles';
 
 function Button({ text, onClick }) {
   return (
-    <Container onClick={onclick} >
+    <Container onClick={onClick} >
       <Text>{text}</Text>
     </Container >
   );

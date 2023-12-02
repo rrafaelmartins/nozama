@@ -5,17 +5,6 @@ export function useProducts() {
 
   const [products, setProducts] = useState([]);
 
-  const getProducts = () => {
-    setProducts([]);
-    api.get('/produtos')
-      .then(res => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
   const createProduct = (product) => {
     api.post('/produtos', product)
       .then(res => {
@@ -27,7 +16,6 @@ export function useProducts() {
   }
 
   return {
-    getProducts,
     createProduct,
     products
   }
