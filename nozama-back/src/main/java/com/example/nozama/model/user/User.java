@@ -27,7 +27,7 @@ public class User {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     //private Carrinho carrinho; //ainda não foi implementado
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Pedido> pedidos = new ArrayList<>();
 
     public User() {

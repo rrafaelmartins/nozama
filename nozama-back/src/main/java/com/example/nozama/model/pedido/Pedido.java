@@ -10,20 +10,44 @@ import java.util.List;
 @Getter
 @Setter
 public class Pedido {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @OneToMany //Anotação para indicar uma relação um para muitos
-    private List<Produto> produtos;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id") // Chave estrangeira na tabela Pedido
-    private User user;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    //@Transient -> Ignoraria esse campo em operações no banco dados, tornando-o um campo não persistido
-    //Acho que não se aplica nesse caso
-    private EstadoPedido estado;
+        @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Produto> produtos;
+
+        @ManyToOne(cascade = CascadeType.MERGE)
+        @JoinColumn(name = "user_id")
+        private User user;
+
+        private String estadoNome; // Armazena o nome do estado como String
+
+        @Transient
+        private EstadoPedido estado; // Campo transiente, não persistido
+
+        public Pedido() {
+            this.estado = new PedidoNovo(this);
+            this.estadoNome = this.estado.toString(); // Definir o nome do estado inicial aqui
+        }
+
+        public void setEstado(EstadoPedido estado) {
+            this.estado = estado;
+            this.estadoNome = estado.toString(); // Atualizar o nome do estado
+        }
+
+        public void proximoEstado() {
+            estado.proximoEstado();
+            this.estadoNome = estado.toString();
+        }
+
+        public void estadoAnterior() {
+            estado.estadoAnterior();
+            this.estadoNome = estado.toString();
+        }
+
 
     //Getters e Setters são gerados automaticamente pelo Lombok
 }

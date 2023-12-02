@@ -1,13 +1,18 @@
 package com.example.nozama.model.pedido;
 
-public class PedidoProcessando implements EstadoPedido{
-    @Override
-    public void proximoEstado(Pedido pedido) {
-        pedido.setEstado(new PedidoEnviado());
+public class PedidoProcessando extends EstadoPedido {
+
+    public PedidoProcessando(Pedido pedido) {
+        super(pedido);
     }
 
     @Override
-    public void estadoAnterior(Pedido pedido) {
-        pedido.setEstado(new PedidoNovo());
+    public void proximoEstado() {
+        pedido.setEstado(new PedidoEnviado(pedido));
+    }
+
+    @Override
+    public void estadoAnterior() {
+        pedido.setEstado(new PedidoNovo(pedido));
     }
 }

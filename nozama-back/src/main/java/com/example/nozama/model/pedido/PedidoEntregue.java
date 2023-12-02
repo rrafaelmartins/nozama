@@ -1,12 +1,18 @@
 package com.example.nozama.model.pedido;
 
-public class PedidoEntregue implements EstadoPedido{
-    @Override
-    public void proximoEstado(Pedido pedido) {
-        // Não implementa, pois é o último estado
+public class PedidoEntregue extends EstadoPedido {
+
+    public PedidoEntregue(Pedido pedido) {
+        super(pedido);
     }
+
     @Override
-    public void estadoAnterior(Pedido pedido) {
-        pedido.setEstado(new PedidoEnviado());
+    public void proximoEstado() {
+        // Talvez final do ciclo de vida do pedido, não muda mais
+    }
+
+    @Override
+    public void estadoAnterior() {
+        // Geralmente, um pedido entregue não volta a estados anteriores
     }
 }

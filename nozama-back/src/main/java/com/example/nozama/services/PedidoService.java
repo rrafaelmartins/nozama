@@ -1,7 +1,7 @@
 package com.example.nozama.services;
 
-import com.example.nozama.model.pedido.Pedido;
-import com.example.nozama.model.pedido.PedidoRepository;
+import com.example.nozama.model.pedido.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +22,14 @@ public class PedidoService {
         return pedidoRepository.findById(id);
     }
 
-    public Pedido salvar(Pedido pedido) {
-        return pedidoRepository.save(pedido);
+    @Transactional
+    public Pedido salvarPedido(Pedido pedido) {
+            return pedidoRepository.save(pedido);
     }
 
     public void deletar(Long id) {
         pedidoRepository.deleteById(id);
     }
 
-    //Alterar estado do pedido
-    public void avancarEstadoPedido(Pedido pedido) {
-        pedido.getEstado().proximoEstado(pedido);
-        pedidoRepository.save(pedido);
-    }
 
-    public void retrocederEstadoPedido(Pedido pedido) {
-        pedido.getEstado().estadoAnterior(pedido);
-        pedidoRepository.save(pedido);
-    }
 }
