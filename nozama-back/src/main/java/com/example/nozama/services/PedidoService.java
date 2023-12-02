@@ -1,7 +1,7 @@
 package com.example.nozama.services;
 
-import com.example.nozama.model.pedido.*;
-import jakarta.transaction.Transactional;
+import com.example.nozama.model.pedido.Pedido;
+import com.example.nozama.model.pedido.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
