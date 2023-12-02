@@ -5,7 +5,7 @@ import com.example.nozama.model.carrinho.CarrinhoRequestDTO;
 
 import jakarta.persistence.*;
 import lombok.*;
-@Table(name = "pedido")
+@Table(name = "carrinho")
 @Entity
 @Getter
 @Setter
@@ -17,12 +17,10 @@ public class Carrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private List<Integer> idCarrinhos;
-    private Double valorTotal;
+    private List<ProdutoCarrinho> produtos;
 
     public Carrinho(CarrinhoRequestDTO data) {
-        this.idCarrinhos = data.idCarrinhos();
-        this.valorTotal = data.valorTotal();
+        this.produtos = data.produtos();
     }
 
 }
