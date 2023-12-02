@@ -1,7 +1,7 @@
 package com.example.nozama.model.carrinho;
 import java.util.List;
 
-import com.example.nozama.model.pedido.PedidoRequestDTO;
+import com.example.nozama.model.carrinho.CarrinhoRequestDTO;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +20,7 @@ public class Carrinho {
     private List<Integer> idCarrinhos;
     private Double valorTotal;
 
-    public Carrinho(PedidoRequestDTO data) {
+    public Carrinho(CarrinhoRequestDTO data) {
         this.idCarrinhos = data.idCarrinhos();
         this.valorTotal = data.valorTotal();
     }
