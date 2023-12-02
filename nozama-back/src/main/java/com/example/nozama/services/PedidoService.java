@@ -12,16 +12,24 @@ import java.util.Optional;
 public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    //CRUD
     public List<Pedido> listarTodos() {
         return pedidoRepository.findAll();
     }
+
     public Optional<Pedido> obterPorId(Long id) {
         return pedidoRepository.findById(id);
     }
-    public Pedido salvar(Pedido pedido) {
-        return pedidoRepository.save(pedido);
+
+    @Transactional
+    public Pedido salvarPedido(Pedido pedido) {
+            return pedidoRepository.save(pedido);
     }
+
     public void deletar(Long id) {
         pedidoRepository.deleteById(id);
     }
+
+
 }
