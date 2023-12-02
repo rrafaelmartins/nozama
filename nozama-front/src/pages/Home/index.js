@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Container } from './styles'
 
 import Section from '../../components/Section';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
+import { GlobalContext } from '../../context/GlobalContext';
 
 function Home() {
+
+  const context = useContext(GlobalContext);
+  const products = context.products;
+
+  useEffect(() => {
+    context.handleProducts();
+  }, []);
+
   return (
     <Container>
       <Section title="Carrinho">
@@ -14,6 +23,7 @@ function Home() {
           price={10}
         />
       </Section>
+      {console.log(products)}
       <Section title="Produtos">
         <Card
           name={'Produto 1'}
