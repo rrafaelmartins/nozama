@@ -16,11 +16,11 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private List<Produto> produtos;
+    private List<Integer> idProdutos;
     private Double valorTotal;
 
     public Pedido(PedidoRequestDTO data) {
-        this.produtos = data.produtos();
+        this.idProdutos = data.idProdutos();
         this.valorTotal = data.valorTotal();
     }
 }
