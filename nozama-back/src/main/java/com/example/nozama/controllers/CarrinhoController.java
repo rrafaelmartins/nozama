@@ -17,7 +17,7 @@ public class CarrinhoController {
 
     @GetMapping
     public List<Carrinho> listarTodos() {
-        return CarrinhoService.listarTodos();
+        return carrinhoService.listarTodos();
     }
 
     @GetMapping("/{id}")
@@ -28,7 +28,7 @@ public class CarrinhoController {
     @PostMapping()
     public Carrinho salvar(@RequestBody CarrinhoRequestDTO data) {
         Carrinho carrinho = new Carrinho(data);
-        return CarrinhoService.salvar(carrinho);
+        return carrinhoService.salvar(carrinho);
     }
 
     @DeleteMapping("/{id}")

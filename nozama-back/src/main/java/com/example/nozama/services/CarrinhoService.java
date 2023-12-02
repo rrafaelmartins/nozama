@@ -1,28 +1,29 @@
 package com.example.nozama.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.example.nozama.model.carrinho.Carrinho;
+import com.example.nozama.model.carrinho.CarrinhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 
 // CarrinhoService.java
 @Service
 public class CarrinhoService {
        @Autowired
-    private PedidoRepository pedidoRepository;
-    public List<Pedido> listarTodos() {
-        return pedidoRepository.findAll();
+    private CarrinhoRepository carrinhoRepository;
+    public List<Carrinho> listarTodos() {
+        return carrinhoRepository.findAll();
     }
-    public Optional<Pedido> obterPorId(Long id) {
-        return pedidoRepository.findById(id);
+    public Optional<Carrinho> obterPorId(Long id) {
+        return carrinhoRepository.findById(id);
     }
-    public Pedido salvar(Pedido pedido) {
-        return pedidoRepository.save(pedido);
+    public Carrinho salvar(Carrinho carrinho) {
+        return carrinhoRepository.save(carrinho);
     }
     public void deletar(Long id) {
-        pedidoRepository.deleteById(id);
+        carrinhoRepository.deleteById(id);
     }
 
     // Implemente os métodos para atualizar, recuperar e deletar itens do carrinho
