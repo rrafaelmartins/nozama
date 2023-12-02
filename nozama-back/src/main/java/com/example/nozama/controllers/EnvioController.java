@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/envios")
 public class EnvioController {
