@@ -4,15 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MockUpAPIEnvio {
+
+    private static MockUpAPIEnvio instance;
+
     public static String PREPARANDO = "Preparando";
     public static String ENVIADO = "Enviado";
     public static String ENTREGUE = "Entregue";
 
+    private MockUpAPIEnvio() {
+    }
 
-    public static Map <String, String> enviarPedido(){
+    public static MockUpAPIEnvio getInstance() {
+        if (instance == null) {
+            instance = new MockUpAPIEnvio();
+        }
+        return instance;
+    }
+
+
+    public Map <String, String> enviarPedido(){
         Map <String, String> pedido = new HashMap<>();
 
-        pedido.put("status", "testEnviado");
+        pedido.put("codigo", "testEnviado");
         pedido.put("localAtual", "transportadora");
         pedido.put("previsaoEntrega", "31/02/2024");
         pedido.put("status", ENVIADO);
@@ -21,7 +34,7 @@ public class MockUpAPIEnvio {
         return pedido;
     }
 
-    public static String statusPedido(String codigoEnvio){
+    public String statusPedido(String codigoEnvio){
 
         switch (codigoEnvio) {
             case "testEnviado":
@@ -36,7 +49,7 @@ public class MockUpAPIEnvio {
         }
     }
 
-    public static Map<String, String> rastrearPedido(String codigoEnvio){
+    public Map<String, String> rastrearPedido(String codigoEnvio){
         Map <String, String> pedido = new HashMap<>();
 
         switch (codigoEnvio) {

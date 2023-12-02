@@ -16,10 +16,6 @@ public class Envio {
     private String codigo;
     private String status;
 
-    public Envio(EnvioRequestDTO data) {
-        this.codigo = data.codigo();
-        this.status = data.status();
-    }
 
     public Envio(String codigo, String status) {
         this.codigo = codigo;

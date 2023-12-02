@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/envios")
 public class EnvioController {
@@ -28,6 +29,11 @@ public class EnvioController {
         return envioService.obterPorId(id);
     }
 
+    @GetMapping("/{id}/status")
+    public String statusPorId(@PathVariable Long id) throws ParseException {
+        return envioService.statusPorId(id);
+    }
+        
     @GetMapping("/{id}/rastrear")
     public Optional<Rastreio> rastrearPorId(@PathVariable Long id) throws ParseException {
         return envioService.rastrearPorId(id);

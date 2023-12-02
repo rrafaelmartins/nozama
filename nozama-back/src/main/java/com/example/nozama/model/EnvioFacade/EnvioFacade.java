@@ -9,15 +9,19 @@ import com.example.nozama.model.envio.Envio;
 import com.example.nozama.utils.MockUpAPIEnvio;
 
 public class EnvioFacade {
-    // Classe criada para aplicar o padrao de projeto Facade.
-    /* 
-     A ideia geral por tras da classe seria que ela fosse responsável por todo o processamento de dados e importação de classes
-     referente ao envio de uma compra, removendo essa responsabilidade da classe Envio.  
-    */
+    /* Classe criada para aplicar o padrao de projeto Facade.
+    *
+        A ideia geral por tras da classe EnvioFacade seria que ela fosse responsavel por todo o processamento de dados e conexao com a(s) API
+     referente ao envio de uma compra.  
+        Deste modo, a classe Envio nao precisaria ter conhecimento sobre nenhuma classe ou estrutura referente a API de rastreio.  
+     * 
+     */
+
+    static MockUpAPIEnvio apiEnvio = MockUpAPIEnvio.getInstance();
 
     public static Envio enviarPedido(){
 
-        Map <String, String> mapEnvio = MockUpAPIEnvio.enviarPedido();
+        Map <String, String> mapEnvio = apiEnvio.enviarPedido();
 
         Envio envio = new Envio(mapEnvio.get("codigo"), mapEnvio.get("status"));
 
@@ -26,7 +30,7 @@ public class EnvioFacade {
 
     public static Rastreio rastrearPedido(String codigo) throws ParseException{
 
-        Map <String, String> mapRastreio = MockUpAPIEnvio.rastrearPedido(codigo);
+        Map <String, String> mapRastreio = apiEnvio.rastrearPedido(codigo);
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date dataEntrega = formato.parse(mapRastreio.get("previsaoEntrega"));
@@ -39,7 +43,7 @@ public class EnvioFacade {
 
     public static String statusPedido(String codigo) throws ParseException{
 
-        return MockUpAPIEnvio.statusPedido(codigo);
+        return apiEnvio.statusPedido(codigo);
     }
 
 }
