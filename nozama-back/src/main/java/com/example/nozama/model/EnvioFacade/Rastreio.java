@@ -1,4 +1,4 @@
-package com.example.nozama.model.envioFacade;
+package com.example.nozama.model.EnvioFacade;
 
 import java.util.Date;
 public class Rastreio {
