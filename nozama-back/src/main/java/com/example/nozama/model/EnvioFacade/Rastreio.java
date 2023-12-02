@@ -1,4 +1,4 @@
-package com.example.nozama.model.EnvioFacade;
+package com.example.nozama.model.envioFacade;
 
 import java.util.Date;
 

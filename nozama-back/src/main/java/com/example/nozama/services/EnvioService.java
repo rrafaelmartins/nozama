@@ -1,7 +1,7 @@
 package com.example.nozama.services;
 
-import com.example.nozama.model.EnvioFacade.EnvioFacade;
-import com.example.nozama.model.EnvioFacade.Rastreio;
+import com.example.nozama.model.envioFacade.EnvioFacade;
+import com.example.nozama.model.envioFacade.Rastreio;
 import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.envio.EnvioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,17 @@ public class EnvioService {
     public Optional<Envio> obterPorId(Long id) {
         return envioRepository.findById(id);
     }
+    public String statusPorId(Long id) throws ParseException {
+        Optional<Envio> envioOptional = envioRepository.findById(id);
+
+        if (envioOptional.isPresent()){
+            Envio envio = envioOptional.get();
+            String status =  EnvioFacade.statusPedido(envio.getCodigo());
+            return status;
+        }
+        return "Pedido não encontrado";
+    }
+
     public Optional<Rastreio> rastrearPorId(Long id) throws ParseException {
         Optional<Envio> envioOptional = envioRepository.findById(id);
 
