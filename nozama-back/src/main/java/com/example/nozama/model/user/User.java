@@ -1,7 +1,11 @@
 package com.example.nozama.model.user;
 import com.example.nozama.model.carrinho.Carrinho;
+import com.example.nozama.model.pagamento.cartao.Cartao;
 import com.example.nozama.model.pedido.Pedido;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -12,6 +16,7 @@ import java.util.List;
 @Table(name = "users")
 @Getter
 @Setter
+@ToString
 public class User {
 
     @Id
@@ -27,6 +32,11 @@ public class User {
     @Column(nullable = false)
     private String senha;
 
+    @OneToOne
+    @JoinColumn(name = "cartao_id", updatable = true)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    private Cartao cartao;
+
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     //private Carrinho carrinho; //ainda não foi implementado
 
@@ -41,6 +51,8 @@ public class User {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.cartao = null;
+        // this.cartao = null;
     }
 }
 

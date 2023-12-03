@@ -1,5 +1,6 @@
 package com.example.nozama.controllers;
 
+import com.example.nozama.model.pagamento.cartao.Cartao;
 import com.example.nozama.model.user.User;
 import com.example.nozama.model.user.UserRepository;
 import com.example.nozama.services.UserService;
