@@ -1,5 +1,6 @@
 package com.example.nozama.controllers;
 
+import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.user.User;
 import com.example.nozama.model.user.UserRepository;
 import com.example.nozama.services.UserService;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User criarUsuario(@RequestBody User usuario) {
+    public User criarUsuario(@RequestBody User usuario, Carrinho carrinho) {
         return userService.salvar(usuario);
     }
 
