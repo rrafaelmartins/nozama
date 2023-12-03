@@ -15,9 +15,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private List<Integer> idProdutos;
-    private Double valorTotal;
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
