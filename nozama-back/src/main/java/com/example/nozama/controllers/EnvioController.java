@@ -1,9 +1,9 @@
 package com.example.nozama.controllers;
 
-import com.example.nozama.model.EnvioFacade.EnvioFacade;
-import com.example.nozama.model.EnvioFacade.Rastreio;
 import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.envio.EnvioRequestDTO;
+import com.example.nozama.model.envioFacade.EnvioFacade;
+import com.example.nozama.model.envioFacade.Rastreio;
 import com.example.nozama.services.EnvioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
