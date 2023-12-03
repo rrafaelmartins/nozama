@@ -1,6 +1,7 @@
 package com.example.nozama.model.user;
 import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.pedido.Pedido;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -16,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private Long id;
 
     private String nome;
 
@@ -29,6 +30,7 @@ public class User {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     //private Carrinho carrinho; //ainda não foi implementado
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Pedido> pedidos = new ArrayList<>();
 
@@ -41,3 +43,5 @@ public class User {
         this.senha = senha;
     }
 }
+
+

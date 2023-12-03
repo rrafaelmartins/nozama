@@ -6,6 +6,6 @@ import com.example.nozama.model.user.User;
 
 import java.util.List;
 
-public record PedidoRequestDTO(List<Produto> produtos, User user, String estadoNome){
+public record PedidoRequestDTO(List<Produto> produtos, Long userId, String estadoNome){
 
 }
