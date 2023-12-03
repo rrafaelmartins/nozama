@@ -8,12 +8,18 @@ public class PagamentoDebitoStrategy implements PagamentoStrategy{
 
     @Override
     public String executaPagamento(double valorTotal) {
-        // Lógica do Pagamento
-        return "Pago com Débito";
+        if (cartao.getTipo() == "debito"){
+          return "Pago com Débito";
+
+        }
+        else {
+          return "Compra não concluída";
+        }
     }
 
     @Override
     public boolean verificaInfo(User usuario) {
+      this.cartao = usuario.getCartao();
         return true;
 
     }

@@ -1,5 +1,6 @@
 package com.example.nozama.model.user;
 import com.example.nozama.model.carrinho.Carrinho;
+import com.example.nozama.model.pagamento.cartao.Cartao;
 import com.example.nozama.model.pedido.Pedido;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -27,6 +28,11 @@ public class User {
     @Column(nullable = false)
     private String senha;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.MERGE, orphanRemoval = true)
+    // @Column(name = "cartao_id", nullable = false)
+    private Cartao cartao;
+
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     //private Carrinho carrinho; //ainda não foi implementado
 
@@ -41,6 +47,7 @@ public class User {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        // this.cartao = null;
     }
 }
 
