@@ -10,7 +10,6 @@ public class PagamentoDebitoStrategy implements PagamentoStrategy{
     public String executaPagamento(double valorTotal) {
         if (cartao.getTipo() == "debito"){
           return "Pago com Débito";
-
         }
         else {
           return "Compra não concluída";
@@ -19,8 +18,11 @@ public class PagamentoDebitoStrategy implements PagamentoStrategy{
 
     @Override
     public boolean verificaInfo(User usuario) {
-      this.cartao = usuario.getCartao();
+      Cartao usuarioCartao = usuario.getCartao();
+      if (usuarioCartao != null){
+        this.cartao = usuarioCartao;
         return true;
-
+      }
+      return false;
     }
 }

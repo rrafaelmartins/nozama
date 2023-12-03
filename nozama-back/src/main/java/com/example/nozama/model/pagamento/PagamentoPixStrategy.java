@@ -13,14 +13,14 @@ public class PagamentoPixStrategy implements PagamentoStrategy{
     }
 
     @Override
-    public boolean verificaInfo(User usuario) {
+    public boolean verificaInfo(User usuario){
         return true;
-
     }
 
     private String geraCodigoPix(){
         UUID codigoAleatorio = UUID.randomUUID();
         return codigoAleatorio.toString().replaceAll("_", "");
     }
+
 
 }

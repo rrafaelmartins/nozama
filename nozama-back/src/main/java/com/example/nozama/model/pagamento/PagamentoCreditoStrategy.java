@@ -8,14 +8,21 @@ public class PagamentoCreditoStrategy implements PagamentoStrategy{
 
     @Override
     public String executaPagamento(double valorTotal) {
-        // Lógica do Pagamento
-        return "Pago com Crédito";
+        if (cartao.getTipo() == "credito"){
+          return "Pago com Crédio";
+        }
+        else {
+          return "Compra não concluída";
+        }
     }
 
     @Override
     public boolean verificaInfo(User usuario) {
+      Cartao usuarioCartao = usuario.getCartao();
+      if (usuarioCartao != null){
+        this.cartao = usuarioCartao;
         return true;
-
+      }
+      return false;
     }
-    
 }
