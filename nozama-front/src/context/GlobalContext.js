@@ -13,6 +13,8 @@ function GlobalProvider({ children }) {
 
   const {
     createUser,
+    login,
+    logged,
     user
   } = useAuth()
 
@@ -24,6 +26,8 @@ function GlobalProvider({ children }) {
           isLoaded,
           products,
           createUser,
+          login,
+          logged,
           user
         }
       }>

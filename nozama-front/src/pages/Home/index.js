@@ -18,7 +18,6 @@ function Home() {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const user = context.user;
 
   useEffect(() => {
     if (isLoaded) {
@@ -55,9 +54,13 @@ function Home() {
 
   }
 
+  // recuperar info de usuario logado
+  const user = context.user;
+  console.log("aqui", user);
+
   return (
     <Container>
-      <Title>Olá, {user.username}</Title>
+      <Title>Olá, {user.nome}</Title>
 
       <Separator />
 
