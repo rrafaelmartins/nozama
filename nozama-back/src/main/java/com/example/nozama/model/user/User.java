@@ -33,6 +33,10 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Pedido> pedidos = new ArrayList<>();
+    
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
+    private Carrinho carrinho;
 
     public User() {
     }
