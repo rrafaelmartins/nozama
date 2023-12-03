@@ -1,17 +1,20 @@
 package com.example.nozama.model.pagamento;
 import java.util.UUID;
+
+import com.example.nozama.model.user.User;
 public class PagamentoPixStrategy implements PagamentoStrategy{
     private String codigoPix = geraCodigoPix();
 
     @Override
-    public boolean executaPagamento(double valorTotal) {
+    public String executaPagamento(double valorTotal) {
         // simulação do pagamento via código gerado!
-
-        return true;
+        
+        return "Pago com PIX";
     }
 
     @Override
-    public void verificaInfo() {
+    public boolean verificaInfo(User usuario) {
+        return true;
 
     }
 

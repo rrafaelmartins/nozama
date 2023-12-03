@@ -1,4 +1,6 @@
 package com.example.nozama.model.pagamento.cartao;
+import com.example.nozama.model.user.User;
+
 import jakarta.persistence.*;
 import lombok.*;
 @Table(name = "cartao")
@@ -15,12 +17,14 @@ public class Cartao {
     private String numero;
     private String vencimento;
     private String cvv;
+    private User usuario;
 
     public Cartao(CartaoRequestDTO data) {
         this.titular = data.titular();
         this.numero = data.numero();
         this.vencimento = data.vencimento();
         this.cvv = data.cvv();
+        this.usuario = data.usuario();
 
     }
 }

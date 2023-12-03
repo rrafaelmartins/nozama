@@ -1,15 +1,20 @@
 package com.example.nozama.model.pagamento;
 
+import com.example.nozama.model.pagamento.cartao.Cartao;
+import com.example.nozama.model.user.User;
+
 public class PagamentoDebitoStrategy implements PagamentoStrategy{
+  private Cartao cartao;
+
     @Override
-    public boolean executaPagamento(double valorTotal) {
+    public String executaPagamento(double valorTotal) {
         // Lógica do Pagamento
-        return true;
+        return "Pago com Débito";
     }
 
     @Override
-    public void verificaInfo() {
-        
-      // Implementar a lógica do cartão
+    public boolean verificaInfo(User usuario) {
+        return true;
+
     }
 }

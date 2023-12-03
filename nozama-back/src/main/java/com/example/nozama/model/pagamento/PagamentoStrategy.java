@@ -1,6 +1,8 @@
 package com.example.nozama.model.pagamento;
 
+import com.example.nozama.model.user.User;
+
 public interface PagamentoStrategy {
-    boolean executaPagamento(double valorTotal);
-    void verificaInfo();
+    String executaPagamento(double valorTotal);
+    boolean verificaInfo(User usuario);
 }
