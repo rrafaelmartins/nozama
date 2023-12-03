@@ -16,7 +16,7 @@ public class Pedido {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+        @OneToMany(mappedBy = "pedido", cascade = CascadeType.MERGE, orphanRemoval = true)
         private List<Produto> produtos;
 
         @ManyToOne(cascade = CascadeType.MERGE)
