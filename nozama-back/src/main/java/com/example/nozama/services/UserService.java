@@ -22,6 +22,7 @@ public class UserService {
     }
 
     public User salvar(User user) {
+        System.out.println(user.toString());
         return userRepository.save(user);
     }
 

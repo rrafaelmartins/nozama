@@ -18,6 +18,7 @@ public class Cartao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cartao_id")
     private Long id;
 
     private String titular;
@@ -27,7 +28,7 @@ public class Cartao {
     private String tipo;
 
     @OneToOne
-    @JoinColumn(name = "user_id", updatable = false)
+    @JoinColumn(name = "user_id", updatable = true)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
         private User usuario;
 
