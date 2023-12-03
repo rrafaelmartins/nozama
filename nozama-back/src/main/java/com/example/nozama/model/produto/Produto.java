@@ -17,9 +17,6 @@ public class Produto {
     private String nome;
     private Double preco;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id") // O nome da coluna de chave estrangeira na tabela Produto
-    private Pedido pedido;
 
     public Produto(ProdutoRequestDTO data) {
         this.nome = data.nome();

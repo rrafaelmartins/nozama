@@ -1,6 +1,7 @@
 package com.example.nozama.model.pedido;
 import com.example.nozama.model.produto.Produto;
 import com.example.nozama.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,12 +16,16 @@ public class Pedido {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @OneToMany(mappedBy = "pedido", cascade = CascadeType.MERGE, orphanRemoval = true)
+        @OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
         private List<Produto> produtos;
 
-        @ManyToOne(cascade = CascadeType.MERGE)
+        @ManyToOne()
         @JoinColumn(name = "user_id")
+        @JsonIdentityReference(alwaysAsId = true)
         private User user;
+
+        @Transient // Ignora na deserialização e não persiste no banco de dados.
+        private Long userId;
 
         private String estadoNome; // Armazena o nome do estado como String
 
