@@ -1,15 +1,22 @@
 import { createContext } from "react";
 import { useProducts } from "./hooks/useProducts";
+import { useAuth } from "./hooks/useAuth";
 
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
   const {
-
     createProduct,
     isLoaded,
     products
   } = useProducts()
+
+  const {
+    createUser,
+    login,
+    logged,
+    user
+  } = useAuth()
 
   return (
     <GlobalContext.Provider
@@ -17,7 +24,11 @@ function GlobalProvider({ children }) {
         {
           createProduct,
           isLoaded,
-          products
+          products,
+          createUser,
+          login,
+          logged,
+          user
         }
       }>
       {children}
