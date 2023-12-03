@@ -12,11 +12,14 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+
 public class Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //@JoinColumn(name = "carrinho_id", insertable = false, updatable = false)
+    @OneToMany
     private List<ProdutoCarrinho> produtos;
 
     public Carrinho(CarrinhoRequestDTO data) {

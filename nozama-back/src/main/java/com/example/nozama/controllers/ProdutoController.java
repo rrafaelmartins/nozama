@@ -12,7 +12,6 @@ import java.util.Optional;
 // @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/produtos")
-@CrossOrigin("*")
 public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
