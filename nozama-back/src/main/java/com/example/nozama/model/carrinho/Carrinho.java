@@ -17,6 +17,7 @@ import lombok.*;
 public class Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="carrinho_id")
     private Long id;
 
     //@JoinColumn(name = "carrinho_id", insertable = false, updatable = false)

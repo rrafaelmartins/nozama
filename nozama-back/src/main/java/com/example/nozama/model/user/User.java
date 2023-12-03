@@ -45,7 +45,8 @@ public class User {
     private List<Pedido> pedidos = new ArrayList<>();
     
     @JsonIgnore
-    @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToOne
+    @JoinColumn(name = "carrinho_id",  updatable = true)
     private Carrinho carrinho;
 
     public User() {
