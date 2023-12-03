@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity<User> atualizarUsuario(@PathVariable int id, @RequestBody User usuario) {
         return userService.obterPorId(id)
                 .map(usuarioExistente -> {
-                    usuario.setId(id);
+                    usuario.setId((long) id);
                     User usuarioAtualizado = userService.salvar(usuario);
                     return ResponseEntity.ok().body(usuarioAtualizado);
                 })
