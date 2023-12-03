@@ -6,10 +6,10 @@ public class PagamentoPixStrategy implements PagamentoStrategy{
     private String codigoPix = geraCodigoPix();
 
     @Override
-    public String executaPagamento(double valorTotal) {
+    public PagamentoResponseStatus executaPagamento(double valorTotal) {
         // simulação do pagamento via código gerado!
         
-        return "Pago com PIX";
+        return new PagamentoResponseStatus(200, "Pago com o código pix: "+codigoPix);
     }
 
     @Override

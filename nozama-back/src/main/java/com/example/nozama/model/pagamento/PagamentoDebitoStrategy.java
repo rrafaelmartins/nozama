@@ -7,12 +7,12 @@ public class PagamentoDebitoStrategy implements PagamentoStrategy{
   private Cartao cartao;
 
     @Override
-    public String executaPagamento(double valorTotal) {
+    public PagamentoResponseStatus executaPagamento(double valorTotal) {
         if (cartao.getTipo() == "debito"){
-          return "Pago com Débito";
+          return new PagamentoResponseStatus(200, "Pago com Débito");
         }
         else {
-          return "Compra não concluída";
+          return new PagamentoResponseStatus(400, "Erro no pagamento com Débito");
         }
     }
 

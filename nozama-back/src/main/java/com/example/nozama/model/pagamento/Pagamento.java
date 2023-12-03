@@ -7,7 +7,6 @@ public class Pagamento {
     private  PagamentoStrategy strategy;
     private  User user;
     private  Carrinho carrinho;
-    
 
     public Pagamento(PagamentoStrategy strategy, User user, Carrinho carrinho) {
         this.strategy = strategy;
@@ -19,12 +18,12 @@ public class Pagamento {
         this.strategy = strategy;
     }
 
-    public String processaPagamento (){
+    public PagamentoResponseStatus processaPagamento (){
         double valorCompra = calculaTotalCarrinho();
         if (strategy.verificaInfo(user)){
             return strategy.executaPagamento(valorCompra);
         }
-        return "Erro na compra";
+        return new PagamentoResponseStatus(400, "Erro no pagamento");
     }
 
     private double calculaTotalCarrinho(){

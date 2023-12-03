@@ -7,12 +7,12 @@ public class PagamentoCreditoStrategy implements PagamentoStrategy{
   private Cartao cartao;
 
     @Override
-    public String executaPagamento(double valorTotal) {
+    public PagamentoResponseStatus executaPagamento(double valorTotal) {
         if (cartao.getTipo() == "credito"){
-          return "Pago com Crédio";
+          return new PagamentoResponseStatus(200, "Pago com Crédito");
         }
         else {
-          return "Compra não concluída";
+          return new PagamentoResponseStatus(400, "Erro no pagamento com Crédito");
         }
     }
 
