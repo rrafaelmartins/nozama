@@ -9,6 +9,12 @@ public class Pagamento {
     private  Carrinho carrinho;
     
 
+    public Pagamento(PagamentoStrategy strategy, User user, Carrinho carrinho) {
+        this.strategy = strategy;
+        this.user = user;
+        this.carrinho = carrinho;
+    }
+
     public void setStrategy(PagamentoStrategy strategy) {
         this.strategy = strategy;
     }
