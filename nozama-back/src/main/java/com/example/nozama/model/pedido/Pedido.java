@@ -1,4 +1,5 @@
 package com.example.nozama.model.pedido;
+import com.example.nozama.model.carrinho.ProdutoCarrinho;
 import com.example.nozama.model.produto.Produto;
 import com.example.nozama.model.user.User;
 import com.fasterxml.jackson.annotation.*;
@@ -7,11 +8,7 @@ import lombok.*;
 
 import java.util.List;
 
-import com.example.nozama.model.produto.Produto;
-import com.example.nozama.model.user.User;
 
-import jakarta.persistence.*;
-import lombok.*;
 @Table(name = "pedido")
 @Entity
 @Getter
@@ -24,9 +21,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-        @JoinColumn(name = "pedido_id", insertable = false, updatable = false)
+        @JoinColumn(name = "pedido_id")
         @OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
-        private List<Produto> produtos;
+        private List<ProdutoCarrinho> produtos;
 
         @ManyToOne()
         @JoinColumn(name = "user_id", updatable = false)

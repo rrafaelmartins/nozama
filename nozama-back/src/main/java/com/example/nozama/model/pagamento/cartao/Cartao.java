@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Cartao {
+    @Id
     private Long id;
 
     private String titular;
