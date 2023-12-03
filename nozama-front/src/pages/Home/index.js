@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container } from './styles'
+import { Container, Title, PedidosWrapper, Text, Separator } from './styles'
 
 import Section from '../../components/Section';
 import Card from '../../components/Card';
@@ -17,6 +17,8 @@ function Home() {
   const [price, setPrice] = useState(0);
 
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const user = context.user;
 
   useEffect(() => {
     if (isLoaded) {
@@ -55,12 +57,18 @@ function Home() {
 
   return (
     <Container>
+      <Title>Olá, {user.username}</Title>
+
+      <Separator />
+
       <Section title="Carrinho">
         <Card
           name={'Produto 1'}
           price={10}
         />
       </Section>
+
+      <Separator />
 
       <Section title="Produtos">
         {products.map(product => (
@@ -71,6 +79,18 @@ function Home() {
         )
         )}
       </Section>
+
+      <Separator />
+
+      <PedidosWrapper>
+        <Title>Pedidos</Title>
+        <Text>Pedido 1</Text>
+        <Text>Pedido 2</Text>
+        <Text>Pedido 3</Text>
+      </PedidosWrapper>
+
+      <Separator />
+
       <Section title="Adicionar produto">
         <Input placeholder="Nome do produto" onChange={e => setName(e.target.value)} />
         <Input placeholder="Preço do produto" type="number" onChange={e => setPrice(e.target.value)} />
