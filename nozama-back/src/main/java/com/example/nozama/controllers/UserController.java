@@ -1,7 +1,5 @@
 package com.example.nozama.controllers;
 
-//import com.example.nozama.controllers.CarrinhoController;
-import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.user.User;
 import com.example.nozama.model.user.UserRepository;
 import com.example.nozama.services.UserService;
