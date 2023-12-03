@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> checkLogin(@RequestBody User usuario) {
+    public ResponseEntity<User> checkLogin(@RequestBody User usuario) {
         String email = usuario.getEmail();
         String password = usuario.getSenha();
 
@@ -50,12 +50,12 @@ public class UserController {
             User user = userOptional.get();
 
             if (user.getSenha().equals(password)) {
-                return ResponseEntity.ok("Login bem-sucedido");
+                return ResponseEntity.ok(user);
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+                return ResponseEntity.notFound().build();
             }
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+            return ResponseEntity.notFound().build();
         }
     }
 
