@@ -1,4 +1,8 @@
 package com.example.nozama.model.envio;
+import java.text.ParseException;
+
+import com.example.nozama.model.EnvioFacade.EnvioFacade;
+
 import jakarta.persistence.*;
 import lombok.*;
 @Table(name = "envio")
@@ -12,14 +16,15 @@ public class Envio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String codigo;
-    private String status;
 
 
-    public Envio(String codigo, String status) {
+    public Envio(String codigo) {
         this.codigo = codigo;
-        this.status = status;
     }
 
+
+    public String getStatus() throws ParseException {
+        return EnvioFacade.statusPedido(this.codigo);
+    }
 }

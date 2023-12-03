@@ -23,7 +23,7 @@ public class EnvioFacade {
 
         Map <String, String> mapEnvio = apiEnvio.enviarPedido();
 
-        Envio envio = new Envio(mapEnvio.get("codigo"), mapEnvio.get("status"));
+        Envio envio = new Envio(mapEnvio.get("codigo"));
 
         return envio;
     }
