@@ -4,6 +4,7 @@ import com.example.nozama.model.EnvioFacade.EnvioFacade;
 import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.carrinho.CarrinhoRepository;
 import com.example.nozama.model.carrinho.ProdutoCarrinho;
+import com.example.nozama.model.carrinho.ProdutoCarrinhoRepository;
 import com.example.nozama.model.carrinho.CarrinhoObserver.CarrinhoSubject;
 import com.example.nozama.model.carrinho.CarrinhoObserver.Observer;
 import com.example.nozama.model.envio.Envio;
@@ -25,6 +26,9 @@ public class CarrinhoService implements CarrinhoSubject {
     
     @Autowired
     private ProdutoRepository produtoRepository;
+
+     @Autowired
+    private ProdutoCarrinhoRepository produtoCarrinhoRepository;
     
     private List<Observer> observers = new ArrayList<>();
 
@@ -51,6 +55,7 @@ public class CarrinhoService implements CarrinhoSubject {
             carrinho = carrinhoOptional.get();
             produto = produtoOptional.get();
             ProdutoCarrinho produtoCarrinho = new ProdutoCarrinho(produto, quantidade);
+            produtoCarrinhoRepository.save(produtoCarrinho);
             carrinho.AtualizarProduto(produtoCarrinho);
             carrinhoRepository.save(carrinho);
         }
