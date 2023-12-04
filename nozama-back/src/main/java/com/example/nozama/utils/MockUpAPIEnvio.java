@@ -52,24 +52,21 @@ public class MockUpAPIEnvio {
     public Map<String, String> rastrearPedido(String codigoEnvio){
         Map <String, String> pedido = new HashMap<>();
 
-        switch (codigoEnvio) {
-            case "testEnviado":
-                
-                pedido.put("localAtual", "transportadora");
-                pedido.put("previsaoEntrega", "31/02/2024");
-                pedido.put("status", ENVIADO);
+        System.out.println(codigoEnvio);
+        if (codigoEnvio.equals("testEnviado")){
             
-            case "testEntregue":
-                pedido.put("localAtual", "Pedido entregue ao destinatario");
-                pedido.put("previsaoEntrega", "04/12/2023");
-                pedido.put("status", ENTREGUE);
-        
-            default:
-                pedido.put("localAtual", "O vendedor esta preparando o pedido");
-                pedido.put("previsaoEntrega", "06/12/2023");
-                pedido.put("status", PREPARANDO);
+            pedido.put("localAtual", "Chegou no centro logístico: Rio de Janeiro ");
+            pedido.put("previsaoEntrega", "10/12/2024");
+            pedido.put("status", ENVIADO);
+        }else if( codigoEnvio.equals("testEntregue")){
+            pedido.put("localAtual", "Pedido entregue ao destinatario");
+            pedido.put("previsaoEntrega", "04/12/2023");
+            pedido.put("status", ENTREGUE);
+        }else{
+            pedido.put("localAtual", "O vendedor está preparando o pedido");
+            pedido.put("previsaoEntrega", "06/12/2023");
+            pedido.put("status", PREPARANDO);
         }
-
         return pedido;
     }
 

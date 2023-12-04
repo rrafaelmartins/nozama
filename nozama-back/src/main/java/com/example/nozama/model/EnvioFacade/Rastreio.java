@@ -6,9 +6,9 @@ public class Rastreio {
 
     public String local;
 
-    public Date previsaoEntrega;
+    public String previsaoEntrega;
 
-    public Rastreio(String status, String local, Date previsaoEntrega) {
+    public Rastreio(String status, String local, String previsaoEntrega) {
         this.status = status;
         this.local = local;
         this.previsaoEntrega = previsaoEntrega;
@@ -22,7 +22,7 @@ public class Rastreio {
         return this.local;
     }
 
-    public Date getPrevisaoEntrega() {
+    public String getPrevisaoEntrega() {
         return this.previsaoEntrega;
     }
 }
