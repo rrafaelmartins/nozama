@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { GlobalContext } from '../../context/GlobalContext';
 import Input from '../../components/Input';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
@@ -15,9 +16,14 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [quantidade, setQuantidade] = useState(0);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const user = context.user;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoaded) {
@@ -34,6 +40,15 @@ function Home() {
           console.error(error);
         });
       setIsLoaded(true);
+
+      api.get(`/carrinho/${user.id}`)
+        .then(res => {
+          console.log(res.data);
+          setCart(res.data.produtos);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     };
 
     fetchData();
@@ -54,10 +69,6 @@ function Home() {
 
   }
 
-  // recuperar info de usuario logado
-  const user = context.user;
-  console.log("aqui", user);
-
   return (
     <Container>
       <Title>Olá, {user.nome}</Title>
@@ -65,11 +76,16 @@ function Home() {
       <Separator />
 
       <Section title="Carrinho">
-        <Card
-          name={'Produto 1'}
-          price={10}
-        />
+        {cart.map(product => (
+          <Card
+            key={product.produto.id}
+            name={product.produto.nome}
+            price={product.produto.preco}
+          />
+        )
+        )}
       </Section>
+      <Button text="Finalizar compra" onClick={() => navigate(`/pagamentos/${user.id}`)} />
 
       <Separator />
 
@@ -78,7 +94,13 @@ function Home() {
           <Card
             name={product.nome}
             price={product.preco}
-          />
+          >
+            <Input placeholder="Quantidade" type="number" onChange={setQuantidade} />
+            <Button text="Adicionar ao carrinho" onClick={() => context.addProductToCart({
+              "produto_id": product.id,
+              "quantidade": quantidade
+            }, user.id)} />
+          </Card>
         )
         )}
       </Section>

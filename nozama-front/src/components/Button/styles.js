@@ -9,6 +9,8 @@ export const Container = styled.div`
   border-radius: 5px;
 
   text-align: center;
+
+  margin-top: 10px;
 `;
 
 export const Text = styled.p`

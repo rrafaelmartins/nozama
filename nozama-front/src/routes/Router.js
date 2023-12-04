@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import { GlobalContext } from '../context/GlobalContext';
+import Pagamento from '../pages/Pagamento';
 
 function AppRoutes() {
   const context = useContext(GlobalContext);
@@ -22,6 +23,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeRoute />}>
         <Route path='/' element={<Home />} />
+        <Route path='/pagamentos/:id' element={<Pagamento />} />
       </Route>
 
       <Route path="/login" element={<LoginRoute />}>
