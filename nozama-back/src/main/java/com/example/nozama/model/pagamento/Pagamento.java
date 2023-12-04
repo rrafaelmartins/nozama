@@ -25,15 +25,25 @@ public class Pagamento {
     private Carrinho carrinho;
 
     public Pagamento(PagamentoRequestDTO data) {
-        this.strategy = new PagamentoCreditoStrategy();
+        this.strategy = checkStrategy(data.strategy());
         this.user = data.user();
         this.carrinho = data.carrinho();
     }
 
-    public void setStrategy(PagamentoStrategy strategy) {
-        this.strategy = strategy;
+    public void setStrategy(String strategyName) {
+        this.strategy = checkStrategy(strategyName);
     }
 
+    private PagamentoStrategy checkStrategy(String strategyName){
+        switch (strategyName) {
+            case "debito":
+                return new PagamentoDebitoStrategy();
+            case "credito":
+                return new PagamentoCreditoStrategy();
+            default:
+                return new PagamentoPixStrategy();
+        }
+    }
     public PagamentoResponseStatus processaPagamento (){
         double valorCompra = carrinho.calculaTotalCarrinho();
         if (strategy.verificaInfo(user)){

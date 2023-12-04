@@ -35,7 +35,6 @@ public class PagamentoController {
     @PostMapping()
     public Pagamento salvar(@RequestBody PagamentoRequestDTO data) {
         Pagamento pagamento = new Pagamento(data);
-        pagamento.setStrategy(null);
         Pedido pedido = new Pedido();
         pedido.setProdutos(data.carrinho().getProdutos());
         pedido.setUserId(data.user().getId());
