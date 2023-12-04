@@ -15,10 +15,14 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Transient
+    private PagamentoStrategy strategy;
 
-    private  PagamentoStrategy strategy;
-    private  User user;
-    private  Carrinho carrinho;
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Carrinho carrinho;
 
     public Pagamento(PagamentoRequestDTO data) {
         this.strategy = new PagamentoCreditoStrategy();
