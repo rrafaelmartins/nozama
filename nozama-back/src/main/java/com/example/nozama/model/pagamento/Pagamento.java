@@ -1,6 +1,5 @@
 package com.example.nozama.model.pagamento;
 import com.example.nozama.model.carrinho.Carrinho;
-import com.example.nozama.model.carrinho.ProdutoCarrinho;
 import com.example.nozama.model.user.User;
 
 public class Pagamento {
@@ -8,8 +7,8 @@ public class Pagamento {
     private  User user;
     private  Carrinho carrinho;
 
-    public Pagamento(PagamentoStrategy strategy, User user, Carrinho carrinho) {
-        this.strategy = strategy;
+    public Pagamento(User user, Carrinho carrinho) {
+        this.strategy = new PagamentoCreditoStrategy();
         this.user = user;
         this.carrinho = carrinho;
     }
