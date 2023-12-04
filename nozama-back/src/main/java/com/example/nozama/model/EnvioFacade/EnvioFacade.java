@@ -36,7 +36,7 @@ public class EnvioFacade {
         Date dataEntrega = formato.parse(mapRastreio.get("previsaoEntrega"));
 
 
-        Rastreio rastreio = new Rastreio(mapRastreio.get("status"), mapRastreio.get("local"), dataEntrega);
+        Rastreio rastreio = new Rastreio(mapRastreio.get("status"), mapRastreio.get("localAtual"), dataEntrega);
 
         return rastreio;
     }
