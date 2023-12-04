@@ -54,10 +54,10 @@ public class PedidoController {
             pedido.setUser(user);
             List<ProdutoCarrinho> produtos = new ArrayList<>();
 
-            for (Produto produto : data.produtos()) {
-                Optional<Produto> produtoOptional = produtoRepository.findById(produto.getId());
-                if (produtoOptional.isPresent()) {
-                    ProdutoCarrinho temp = new ProdutoCarrinho(produtoOptional.get(),1);
+            for (ProdutoCarrinho produto : data.produtos()) {
+                Optional<ProdutoCarrinho> produtoCarrinhoOptional = produtoCarrinhoRepository.findById(produto.getId());
+                if (produtoCarrinhoOptional.isPresent()) {
+                    ProdutoCarrinho temp = produtoCarrinhoOptional.get();
                     produtoCarrinhoRepository.save(temp);
                     produtos.add(temp);
                 } else {
