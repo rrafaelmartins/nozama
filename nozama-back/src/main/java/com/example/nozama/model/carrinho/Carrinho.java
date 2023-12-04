@@ -55,4 +55,11 @@ public class Carrinho{
         }
     }
     
+    public double calculaTotalCarrinho(){
+        double total = 0;
+        for (ProdutoCarrinho produtoCarrinho : produtos){
+            total += produtoCarrinho.getQuantidade() * produtoCarrinho.getProduto().getPreco();
+        }
+        return total;
+    }
 }
