@@ -29,9 +29,6 @@ public class UserService {
 
     public User salvar(User user) {
         Carrinho carrinho = new Carrinho();
-        
-        CarrinhoObserver carrinhoObserver = new CarrinhoObserver(carrinho);
-        carrinhoObserver.atualizar();
         carrinhoRepository.save(carrinho);
         user.setCarrinho(carrinho);
         return userRepository.save(user);
