@@ -5,3 +5,38 @@ Repositório referente ao Trabalho da disciplina de Projeto de Software no perí
 Alunos: Gabriel Breder, Gabriela Pinheiro, Lucas Resende, Rafael Aguiar e Raian Pierre
 
 O arquivo no Google Docs do trabalho escrito pode ser encontrado nesse [link](https://docs.google.com/document/d/1J7rvrno4a1jZciDY2p-RtBa2dM4BiyEKuyY2MKS0eQs/edit?usp=sharing).[]()
+
+# Execução do programa
+
+## Backend Spring
+
+- Entre a pasta nozama back e execute o arquivo "scr > main > java > com > example > nozama > NozamaApplication.java"
+
+## Frontend ReactJS
+
+- Entre na pasta nozama-front e execute os seguintes comandos
+
+```JavaScript
+  npm install
+```
+
+```JavaScript
+  npm start
+```
+
+Os usuários cadastrados no sistema são:
+
+login: rafael@gmail.com
+senha: rafael
+
+login: gabriel@gmail.com
+senha: gabriel
+
+login: lucas@gmail.com
+senha: lucas
+
+login: gabi@gmail.com
+senha: gabi
+
+login: raian@gmail.com
+senha: raian
