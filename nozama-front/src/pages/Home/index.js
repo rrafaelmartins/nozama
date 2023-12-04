@@ -18,6 +18,8 @@ function Home() {
   const [price, setPrice] = useState(0);
   const [cart, setCart] = useState([]);
   const [quantidade, setQuantidade] = useState(0);
+  const [pedidos, setPedidos] = useState([]);
+  const [status, setStatus] = useState([]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -33,7 +35,7 @@ function Home() {
     const fetchData = async () => {
       api.get('/produtos')
         .then(res => {
-          console.log(res.data);
+
           setProducts(res.data);
         })
         .catch(error => {
@@ -43,8 +45,26 @@ function Home() {
 
       api.get(`/carrinho/${user.id}`)
         .then(res => {
-          console.log(res.data);
+
           setCart(res.data.produtos);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+      api.get(`/pedidos/${user.id}`)
+        .then(res => {
+          setPedidos(res.data);
+
+          if (res.data && res.data.id) {
+            api.get(`/envios/${res.data.id}/rastrear`)
+              .then(res => {
+                setStatus(res.data);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          }
         })
         .catch(error => {
           console.error(error);
@@ -108,10 +128,17 @@ function Home() {
       <Separator />
 
       <PedidosWrapper>
-        <Title>Pedidos</Title>
-        <Text>Pedido 1</Text>
-        <Text>Pedido 2</Text>
-        <Text>Pedido 3</Text>
+        {
+          pedidos &&
+
+          <>
+            <Title>Pedidos</Title>
+            <Text>Pedido {pedidos.id}</Text>
+            <Text>Status: {status.status}</Text>
+            <Button text="Rastrear" onClick={() => navigate(`/rastrear/${pedidos.id}`)} />
+          </>
+        }
+
       </PedidosWrapper>
 
       <Separator />

@@ -7,13 +7,15 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import { GlobalContext } from '../../context/GlobalContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Pagamento() {
 
   const [forma, setForma] = React.useState('');
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [carrinho, setCarrinho] = useState([]);
 
@@ -29,32 +31,44 @@ function Pagamento() {
   }, []);
 
   const teste = () => {
-    let s = [];
-    carrinho.map(product => {
-      s.push({
-        "id": product.produto.id,
-      })
-    })
 
-    console.log(s);
   }
   teste();
 
   const finalizar = () => {
-    api.post(`/pedidos`, {
-      "produtos": [
+    let produtos = [];
+    carrinho.map(product => {
+      produtos.push({
+        "id": product.produto.id,
+      })
+    })
 
-      ],
+    api.post(`/pedidos`, {
+      "produtos": produtos,
       "userId": id,
       "estadoNome": "NOVO"
     })
       .then(res => {
-        console.log(res.data);
+        api.post(`/pedidos/${res.data.id}/enviar`, {
+          "produtos": produtos,
+          "userId": id,
+          "estadoNome": "NOVO"
+        })
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
       })
       .catch(error => {
         console.error(error);
       });
+
+    navigate('/');
   }
+
+  console.log(forma);
 
   return (
     <Container>
@@ -76,7 +90,7 @@ function Pagamento() {
       <Title>Forma de Pagamento</Title>
       <Form>
         <Section>
-          <Input name="forma" type="radio" value="Crédito" onChange={e => setForma(e.target.value)} />
+          <Input name="forma" type="radio" value="Crédito" onChange={e => console.log(e.target.value)} />
           <Label>Crédito</Label>
         </Section>
 
@@ -84,6 +98,7 @@ function Pagamento() {
           <Input name="forma" type="radio" value="Débito" onChange={e => setForma(e.target.value)} />
           <Label>Débito</Label>
         </Section>
+
         <Section>
           <Input name="forma" type="radio" value="PIX" onChange={e => setForma(e.target.value)} />
           <Label>PIX</Label>
@@ -99,7 +114,7 @@ function Pagamento() {
             <Input placeholder="Nome do titular" />
             <Input placeholder="Validade" />
             <Input placeholder="CVV" />
-            <Button text="Finalizar" />
+            <Button text="Finalizar" onClick={finalizar} />
           </CartaoWrapper>
           <Separator />
         </>

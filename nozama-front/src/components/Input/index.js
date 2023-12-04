@@ -2,10 +2,15 @@ import React from 'react';
 
 import { Container } from './styles';
 
-function Input({ placeholder, onChange, type }) {
+function Input({ placeholder, onChange, type, name, value }) {
   return (
-    <Container placeholder={placeholder} onChange={onChange} type={type}>
-
+    <Container
+      name={name}
+      placeholder={placeholder}
+      onChange={onChange}
+      type={type}
+      value={value}
+    >
     </Container>
   );
 }
