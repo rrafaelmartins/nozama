@@ -19,18 +19,10 @@ public class Pagamento {
     }
 
     public PagamentoResponseStatus processaPagamento (){
-        double valorCompra = calculaTotalCarrinho();
+        double valorCompra = carrinho.calculaTotalCarrinho();
         if (strategy.verificaInfo(user)){
             return strategy.executaPagamento(valorCompra);
         }
         return new PagamentoResponseStatus(400, "Erro no pagamento");
-    }
-
-    private double calculaTotalCarrinho(){
-        double total = 0;
-        for (ProdutoCarrinho produtoCarrinho : carrinho.getProdutos()){
-            total += produtoCarrinho.getQuantidade() * produtoCarrinho.getProduto().getPreco();
-        }
-        return total;
     }
 }
