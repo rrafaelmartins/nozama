@@ -1,5 +1,6 @@
 package com.example.nozama.model.pedido;
 import com.example.nozama.model.carrinho.ProdutoCarrinho;
+import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.produto.Produto;
 import com.example.nozama.model.user.User;
 import com.fasterxml.jackson.annotation.*;
@@ -29,6 +30,10 @@ public class Pedido {
         @JoinColumn(name = "user_id", updatable = false)
         @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
         private User user;
+
+        @OneToOne
+        @JoinColumn(name = "envio_id")
+        private Envio envio;
 
         @JsonIgnore
         @Transient // Ignora na deserialização e não persiste no banco de dados.

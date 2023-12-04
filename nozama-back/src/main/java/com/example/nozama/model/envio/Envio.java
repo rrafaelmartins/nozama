@@ -15,6 +15,7 @@ import lombok.*;
 public class Envio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "envio_id")
     private Long id;
     private String codigo;
 

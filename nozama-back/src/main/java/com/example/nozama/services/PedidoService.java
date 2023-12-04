@@ -1,5 +1,8 @@
 package com.example.nozama.services;
 
+import com.example.nozama.model.EnvioFacade.EnvioFacade;
+import com.example.nozama.model.EnvioFacade.Rastreio;
+import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.pedido.Pedido;
 import com.example.nozama.model.pedido.PedidoRepository;
 
@@ -15,6 +18,9 @@ import java.util.Optional;
 public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private EnvioService envioService;
 
     //CRUD
     public List<Pedido> listarTodos() {
@@ -34,5 +40,31 @@ public class PedidoService {
         pedidoRepository.deleteById(id);
     }
 
+    public String enviarPedido(Long id){
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
+
+        if (pedidoOptional.isPresent()){
+            Pedido pedido = pedidoOptional.get();
+            Envio envio = envioService.salvar();
+
+            pedido.setEnvio(envio);
+            pedidoRepository.save(pedido);
+            
+            return envio.getCodigo();
+        }
+        return null;
+    }   
+
+    public Long obterIdEnvio(Long id){
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
+
+        if (pedidoOptional.isPresent()){
+            Pedido pedido = pedidoOptional.get();
+            Envio envio = pedido.getEnvio();
+            
+            return envio.getId();
+        }
+        return null;
+    }
 
 }
