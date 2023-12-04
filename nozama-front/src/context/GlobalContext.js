@@ -10,6 +10,9 @@ function GlobalProvider({ children }) {
     isLoaded,
     products,
     addProductToCart,
+    postPedidos,
+    setPedidosAtt,
+    pedidosAtt
   } = useProducts()
 
   const {
@@ -30,7 +33,10 @@ function GlobalProvider({ children }) {
           login,
           logged,
           user,
-          addProductToCart
+          addProductToCart,
+          postPedidos,
+          setPedidosAtt,
+          pedidosAtt
         }
       }>
       {children}

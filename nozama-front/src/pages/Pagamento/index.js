@@ -17,6 +17,8 @@ function Pagamento() {
 
   const navigate = useNavigate();
 
+  const context = useContext(GlobalContext);
+
   const [carrinho, setCarrinho] = useState([]);
 
   useEffect(() => {
@@ -39,31 +41,17 @@ function Pagamento() {
     let produtos = [];
     carrinho.map(product => {
       produtos.push({
-        "id": product.produto.id,
+        "id": product.id,
       })
     })
 
-    api.post(`/pedidos`, {
+    const produto = {
       "produtos": produtos,
       "userId": id,
       "estadoNome": "NOVO"
-    })
-      .then(res => {
-        api.post(`/pedidos/${res.data.id}/enviar`, {
-          "produtos": produtos,
-          "userId": id,
-          "estadoNome": "NOVO"
-        })
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    }
+
+    context.postPedidos(produto, produtos, id);
 
     navigate('/');
   }
@@ -125,7 +113,7 @@ function Pagamento() {
           <Title>PIX</Title>
           <CartaoWrapper>
             <Text>Chave PIX: 123456789</Text>
-            <Button text="Finalizar" onClick={finalizar} />
+            <Button text="Finalizar" onClick={() => { finalizar() }} />
           </CartaoWrapper>
           <Separator />
         </>

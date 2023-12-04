@@ -45,26 +45,37 @@ function Home() {
 
       api.get(`/carrinho/${user.id}`)
         .then(res => {
-
           setCart(res.data.produtos);
         })
         .catch(error => {
           console.error(error);
         });
 
-      api.get(`/pedidos/${user.id}`)
+      api.get(`/pedidos`)
         .then(res => {
-          setPedidos(res.data);
+          const pedidosTemp = res.data;
+          console.log(pedidosTemp);
 
-          if (res.data && res.data.id) {
-            api.get(`/envios/${res.data.id}/rastrear`)
-              .then(res => {
-                setStatus(res.data);
-              })
-              .catch(error => {
-                console.error(error);
-              });
-          }
+          pedidosTemp.map(pedido => {
+            console.log(pedido);
+
+            console.log(pedido.user);
+            if (pedido.user.id === user.id) {
+              setPedidos(pedido);
+
+              if (pedido.envio.id) {
+                api.get(`/envios/${pedido.envio.id}/rastrear`)
+                  .then(res => {
+                    setStatus(...status, res.data);
+                  })
+                  .catch(error => {
+                    console.error(error);
+                  });
+              }
+            }
+          })
+          context.setPedidosAtt(true);
+
         })
         .catch(error => {
           console.error(error);
@@ -130,7 +141,7 @@ function Home() {
 
       <PedidosWrapper>
         {
-          pedidos &&
+          pedidos && status &&
 
           <>
             <Title>Pedidos</Title>
