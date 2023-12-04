@@ -36,7 +36,9 @@ public class PagamentoController {
     public Pagamento salvar(@RequestBody PagamentoRequestDTO data) {
         Pagamento pagamento = new Pagamento(data);
         pagamento.setStrategy(null);
-        Pedido pedido = new Pedido(null, data.carrinho().getProdutos(), null, data.user().getId(), "NOVO", null);
+        Pedido pedido = new Pedido();
+        pedido.setProdutos(data.carrinho().getProdutos());
+        pedido.setUserId(data.user().getId());
         pedidoService.salvar(pedido);
         return pagamentoService.salvar(pagamento);
     }
