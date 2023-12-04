@@ -2,6 +2,7 @@ package com.example.nozama.services;
 
 import com.example.nozama.model.pagamento.Pagamento;
 import com.example.nozama.model.pagamento.PagamentoRepository;
+import com.example.nozama.model.pedido.Pedido;
 
 import jakarta.transaction.Transactional;
 
@@ -16,6 +17,9 @@ public class PagamentoService {
     @Autowired
     private PagamentoRepository pagamentoRepository;
 
+    @Autowired
+    private PedidoService pedidoService;
+
     //CRUD
     public List<Pagamento> listarTodos() {
         return pagamentoRepository.findAll();
@@ -27,6 +31,8 @@ public class PagamentoService {
 
     @Transactional
     public Pagamento salvar(Pagamento pagamento) {
+        // Pedido pedido = new Pedido(null, null, null, null, null, null);
+        //     pedidoService.salvar(pedido);
             return pagamentoRepository.save(pagamento);
     }
 

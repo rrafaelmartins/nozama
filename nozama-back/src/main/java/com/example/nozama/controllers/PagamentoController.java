@@ -1,8 +1,10 @@
 package com.example.nozama.controllers;
 
 import com.example.nozama.model.pagamento.Pagamento;
-import com.example.nozama.services.CartaoService;
+import com.example.nozama.model.pagamento.PagamentoRequestDTO;
+import com.example.nozama.model.pedido.Pedido;
 import com.example.nozama.services.PagamentoService;
+import com.example.nozama.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,10 @@ import java.util.Optional;
 public class PagamentoController {
     @Autowired
     private PagamentoService pagamentoService;
+    
+    @Autowired
+    private PedidoService pedidoService;
+    
 
     @GetMapping
     public List<Pagamento> listarTodos() {
@@ -27,8 +33,12 @@ public class PagamentoController {
     }
 
     @PostMapping()
-    public String salvar(@RequestBody PagamentoRequestDTO data) {
-
+    public Pagamento salvar(@RequestBody PagamentoRequestDTO data) {
+        Pagamento pagamento = new Pagamento(data);
+        pagamento.setStrategy(null);
+        Pedido pedido = new Pedido(null, data.carrinho().getProdutos(), null, data.user().getId(), "NOVO", null);
+        pedidoService.salvar(pedido);
+        return pagamentoService.salvar(pagamento);
     }
 
 }

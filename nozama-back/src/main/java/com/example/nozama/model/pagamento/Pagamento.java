@@ -1,16 +1,29 @@
 package com.example.nozama.model.pagamento;
 import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.user.User;
-
+import jakarta.persistence.*;
+import lombok.*;
+@Table(name = "pagamento")
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Pagamento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
     private  PagamentoStrategy strategy;
     private  User user;
     private  Carrinho carrinho;
 
-    public Pagamento(User user, Carrinho carrinho) {
+    public Pagamento(PagamentoRequestDTO data) {
         this.strategy = new PagamentoCreditoStrategy();
-        this.user = user;
-        this.carrinho = carrinho;
+        this.user = data.user();
+        this.carrinho = data.carrinho();
     }
 
     public void setStrategy(PagamentoStrategy strategy) {
