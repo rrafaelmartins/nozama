@@ -2,6 +2,7 @@ package com.example.nozama.services;
 
 import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.carrinho.CarrinhoRepository;
+import com.example.nozama.model.carrinho.CarrinhoObserver.InterfaceDoUsuario;
 import com.example.nozama.model.user.User;
 import com.example.nozama.model.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class UserService {
 
     public User salvar(User user) {
         Carrinho carrinho = new Carrinho();
+        //InterfaceDoUsuario interfaceDoUsuario = new InterfaceDoUsuario(carrinho);
         carrinhoRepository.save(carrinho);
         user.setCarrinho(carrinho);
         return userRepository.save(user);

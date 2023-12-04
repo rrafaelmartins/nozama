@@ -4,6 +4,7 @@ import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.carrinho.CarrinhoRequestDTO;
 import com.example.nozama.model.carrinho.ProdutoCarrinho;
 import com.example.nozama.model.carrinho.ProdutoCarrinhoRequestDTO;
+import com.example.nozama.model.carrinho.CarrinhoObserver.InterfaceDoUsuario;
 import com.example.nozama.model.produto.Produto;
 import com.example.nozama.services.CarrinhoService;
 import com.example.nozama.services.ProdutoService;

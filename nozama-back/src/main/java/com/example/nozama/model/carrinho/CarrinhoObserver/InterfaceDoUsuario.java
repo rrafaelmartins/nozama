@@ -1,10 +1,22 @@
 package com.example.nozama.model.carrinho.CarrinhoObserver;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class InterfaceDoUsuario implements Observer {
+import com.example.nozama.model.carrinho.Carrinho;
+
+// InterfaceDoUsuario.java (View)
+public class InterfaceDoUsuario implements CarrinhoObserver {
+
+    private Carrinho carrinho;
+
+    public InterfaceDoUsuario(Carrinho carrinho) {
+        this.carrinho = carrinho;
+        carrinho.registrarObservador(this);
+    }
+
     @Override
-    public void atualizar(CarrinhoSubject carrinho) {
-        System.out.println("O carrinho foi atualizado! Itens: "); // + ((Carrinho) carrinho).getItens());
+    public void atualizar() {
+        System.out.println("A interface do usuário foi atualizada!" );
         // Lógica de atualização da interface do usuário
     }
 }

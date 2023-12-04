@@ -2,7 +2,11 @@ package com.example.nozama.model.carrinho;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.example.nozama.model.carrinho.CarrinhoRequestDTO;
+import com.example.nozama.model.carrinho.CarrinhoObserver.CarrinhoObserver;
+import com.example.nozama.model.carrinho.CarrinhoObserver.InterfaceDoUsuario;
 import com.example.nozama.model.user.User;
 
 import jakarta.persistence.*;
@@ -14,12 +18,14 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
-public class Carrinho {
+public class Carrinho{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="carrinho_id")
     private Long id;
-
+    @Transient
+    private List<CarrinhoObserver> observers = new ArrayList<>();
+   
     //@JoinColumn(name = "carrinho_id", insertable = false, updatable = false)
     @OneToMany
     private List<ProdutoCarrinho> produtos;
@@ -33,6 +39,22 @@ public class Carrinho {
     public void AtualizarProduto(ProdutoCarrinho produtoCarrinho) {
         this.produtos.add(produtoCarrinho);
     }
+
+    //Observer
+    public void registrarObservador(CarrinhoObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removerObservador(CarrinhoObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notificarObservadores() {
+        for (CarrinhoObserver observer : observers) {
+            observer.atualizar();
+        }
+    }
+    
     public double calculaTotalCarrinho(){
         double total = 0;
         for (ProdutoCarrinho produtoCarrinho : produtos){

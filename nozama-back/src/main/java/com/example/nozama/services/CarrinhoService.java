@@ -1,12 +1,12 @@
 package com.example.nozama.services;
 
+import com.example.nozama.controllers.CarrinhoController;
 import com.example.nozama.model.EnvioFacade.EnvioFacade;
 import com.example.nozama.model.carrinho.Carrinho;
 import com.example.nozama.model.carrinho.CarrinhoRepository;
 import com.example.nozama.model.carrinho.ProdutoCarrinho;
 import com.example.nozama.model.carrinho.ProdutoCarrinhoRepository;
-import com.example.nozama.model.carrinho.CarrinhoObserver.CarrinhoSubject;
-import com.example.nozama.model.carrinho.CarrinhoObserver.Observer;
+import com.example.nozama.model.carrinho.CarrinhoObserver.InterfaceDoUsuario;
 import com.example.nozama.model.envio.Envio;
 import com.example.nozama.model.produto.Produto;
 import com.example.nozama.model.produto.ProdutoRepository;
@@ -20,7 +20,7 @@ import java.util.Optional;
 
 // CarrinhoService.java
 @Service
-public class CarrinhoService implements CarrinhoSubject {
+public class CarrinhoService {
     @Autowired
     private CarrinhoRepository carrinhoRepository;
     
@@ -30,7 +30,7 @@ public class CarrinhoService implements CarrinhoSubject {
      @Autowired
     private ProdutoCarrinhoRepository produtoCarrinhoRepository;
     
-    private List<Observer> observers = new ArrayList<>();
+
 
     public List<Carrinho> listarTodos() {
         return carrinhoRepository.findAll();
@@ -39,6 +39,8 @@ public class CarrinhoService implements CarrinhoSubject {
         return carrinhoRepository.findById(id);
     }
     public Carrinho salvar(Carrinho carrinho) {
+        InterfaceDoUsuario interfaceDoUsuario = new InterfaceDoUsuario(carrinho);
+        //carrinho.getObservers(interfaceDoUsuario);
         return carrinhoRepository.save(carrinho);
     }
     public void deletar(Long id) {
@@ -47,6 +49,7 @@ public class CarrinhoService implements CarrinhoSubject {
     public void adicionarProduto(Long id, Long produtoId, int quantidade){
         Carrinho carrinho;
         Optional<Carrinho> carrinhoOptional = carrinhoRepository.findById(id);
+
 
         Produto produto;
         Optional<Produto> produtoOptional = produtoRepository.findById(produtoId);
@@ -60,19 +63,6 @@ public class CarrinhoService implements CarrinhoSubject {
             carrinhoRepository.save(carrinho);
         }
        
-    }
-    
-    //Observer
-    public void registrarObservador(Observer observer) {
-        observers.add(observer);
-    }
-    public void removerObservador(Observer observer) {
-        observers.remove(observer);
-    }
-    public void notificarObservadores() {
-        for (Observer observer : observers) {
-            observer.atualizar(this);
-        }
     }
 
 
