@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.nozama.model.carrinho.CarrinhoRequestDTO;
 import com.example.nozama.model.carrinho.CarrinhoObserver.CarrinhoObserver;
-import com.example.nozama.model.carrinho.CarrinhoObserver.InterfaceDoUsuario;
 import com.example.nozama.model.user.User;
 
 import jakarta.persistence.*;
@@ -17,14 +16,14 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-
+@ToString
 public class Carrinho{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="carrinho_id")
     private Long id;
     @Transient
-    private List<CarrinhoObserver> observers = new ArrayList<>();
+    private List<CarrinhoObserver> observers = new ArrayList<CarrinhoObserver>();
    
     //@JoinColumn(name = "carrinho_id", insertable = false, updatable = false)
     @OneToMany
@@ -35,7 +34,9 @@ public class Carrinho{
     }
     public Carrinho() {
         this.produtos = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
+    
     public void AtualizarProduto(ProdutoCarrinho produtoCarrinho) {
         this.produtos.add(produtoCarrinho);
     }
@@ -48,7 +49,6 @@ public class Carrinho{
     public void removerObservador(CarrinhoObserver observer) {
         observers.remove(observer);
     }
-
     private void notificarObservadores() {
         for (CarrinhoObserver observer : observers) {
             observer.atualizar();
