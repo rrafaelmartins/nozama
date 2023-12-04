@@ -30,5 +30,7 @@ public class Carrinho {
     public Carrinho() {
         this.produtos = new ArrayList<>();
     }
-
+    public void AtualizarProduto(ProdutoCarrinho produtoCarrinho) {
+        this.produtos.add(produtoCarrinho);
+    }
 }
