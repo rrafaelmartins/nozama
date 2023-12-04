@@ -73,13 +73,21 @@ public class PedidoController {
         }
     }
 
-
-
-
-
-
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         pedidoService.deletar(id);
     }
+
+    @PostMapping("/{id}/enviar")
+    public String enviarPedido(@PathVariable Long id) {
+        return pedidoService.enviarPedido(id);
+    }
+
+    @GetMapping("/{id}/envio")
+    public Long obterIdEnvio(@PathVariable Long id) {
+        return pedidoService.obterIdEnvio(id);
+    }
+
+
+
 }
