@@ -112,6 +112,7 @@ function Home() {
       <Section title="Produtos">
         {products.map(product => (
           <Card
+            key={product.id}
             name={product.nome}
             price={product.preco}
           >
