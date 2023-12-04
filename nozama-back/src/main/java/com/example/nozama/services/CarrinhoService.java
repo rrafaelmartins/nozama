@@ -20,9 +20,12 @@ import java.util.Optional;
 // CarrinhoService.java
 @Service
 public class CarrinhoService implements CarrinhoSubject {
-       @Autowired
+    @Autowired
     private CarrinhoRepository carrinhoRepository;
-     private ProdutoRepository produtoRepository;
+    
+    @Autowired
+    private ProdutoRepository produtoRepository;
+    
     private List<Observer> observers = new ArrayList<>();
 
     public List<Carrinho> listarTodos() {
