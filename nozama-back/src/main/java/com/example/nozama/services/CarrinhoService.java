@@ -52,7 +52,7 @@ public class CarrinhoService implements CarrinhoSubject {
             produto = produtoOptional.get();
             ProdutoCarrinho produtoCarrinho = new ProdutoCarrinho(produto, quantidade);
             carrinho.AtualizarProduto(produtoCarrinho);
-
+            carrinhoRepository.save(carrinho);
         }
        
     }
