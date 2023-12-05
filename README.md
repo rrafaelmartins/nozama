@@ -25,20 +25,3 @@ O arquivo do Google Apresentações contendo a apresentação de slides pode ser
 ```JavaScript
   npm start
 ```
-
-Os usuários cadastrados no sistema são:
-
-login: rafael@gmail.com
-senha: rafael
-
-login: gabriel@gmail.com
-senha: gabriel
-
-login: lucas@gmail.com
-senha: lucas
-
-login: gabi@gmail.com
-senha: gabi
-
-login: raian@gmail.com
-senha: raian
