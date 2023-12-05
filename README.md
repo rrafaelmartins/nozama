@@ -4,7 +4,9 @@ Repositório referente ao Trabalho da disciplina de Projeto de Software no perí
 
 Alunos: Gabriel Breder, Gabriela Pinheiro, Lucas Resende, Rafael Aguiar e Raian Pierre
 
-O arquivo no Google Docs do trabalho escrito pode ser encontrado nesse [link](https://docs.google.com/document/d/1J7rvrno4a1jZciDY2p-RtBa2dM4BiyEKuyY2MKS0eQs/edit?usp=sharing).[]()
+O arquivo no Google Docs do trabalho escrito pode ser encontrado nesse [link](https://docs.google.com/document/d/1J7rvrno4a1jZciDY2p-RtBa2dM4BiyEKuyY2MKS0eQs/edit?usp=sharing).
+
+O arquivo do Google Apresentações contendo a apresentação de slides pode ser encontrado neste [link](https://docs.google.com/presentation/d/1ZIXsyuxB2IHDbgVmd4WQC6NXV-z__Brj5wLS3Cxv3jc/edit#slide=id.p).
 
 # Execução do programa
 
