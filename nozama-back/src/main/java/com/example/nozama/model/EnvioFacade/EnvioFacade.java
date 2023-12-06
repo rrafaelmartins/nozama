@@ -32,11 +32,7 @@ public class EnvioFacade {
 
         Map <String, String> mapRastreio = apiEnvio.rastrearPedido(codigo);
 
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataEntrega = formato.parse(mapRastreio.get("previsaoEntrega"));
-
-
-        Rastreio rastreio = new Rastreio(mapRastreio.get("status"), mapRastreio.get("local"), dataEntrega);
+        Rastreio rastreio = new Rastreio(mapRastreio.get("status"), mapRastreio.get("localAtual"), mapRastreio.get("previsaoEntrega"));
 
         return rastreio;
     }

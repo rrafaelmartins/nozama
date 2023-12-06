@@ -5,6 +5,8 @@ export const Container = styled.div`
 
 export const ListWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
 `;
 

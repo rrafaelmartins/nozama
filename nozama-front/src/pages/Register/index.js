@@ -32,7 +32,7 @@ function Register() {
       <Title>Register</Title>
       <Input placeholder="Email" onChange={e => setEmail(e.target.value)} />
       <Input placeholder="Nome de usuário" onChange={e => setUsername(e.target.value)} />
-      <Input placeholder="Senha" onChange={e => setPassword(e.target.value)} />
+      <Input placeholder="Senha" type="password" onChange={e => setPassword(e.target.value)} />
       <Button text="Cadastrar" onClick={createUser} />
 
       <HiperLink onClick={() => navigate('/login')}>Já possui uma conta? Entrar</HiperLink>

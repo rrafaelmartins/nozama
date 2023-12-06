@@ -8,7 +8,11 @@ function GlobalProvider({ children }) {
   const {
     createProduct,
     isLoaded,
-    products
+    products,
+    addProductToCart,
+    postPedidos,
+    setPedidosAtt,
+    pedidosAtt
   } = useProducts()
 
   const {
@@ -28,7 +32,11 @@ function GlobalProvider({ children }) {
           createUser,
           login,
           logged,
-          user
+          user,
+          addProductToCart,
+          postPedidos,
+          setPedidosAtt,
+          pedidosAtt
         }
       }>
       {children}
